@@ -1,0 +1,7 @@
+P = w^3 - w^2 - 8*w + 7;
+polisirreducible(P)
+K = bnfinit(P);
+K.clgp
+bnfnarrow(K)
+
+K.fu

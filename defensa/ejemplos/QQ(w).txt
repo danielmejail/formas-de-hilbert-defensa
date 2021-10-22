@@ -1,0 +1,615 @@
+
+_<x> := PolynomialRing(Rationals());
+F := NumberField(x^2-5);
+fact := Factorization(229*Integers(F));
+lvl := fact[1][1];
+k := [2,2];
+H := HilbertCuspForms(F, lvl, k);
+
+Neue := NewSubspace(H);
+Neue;
+Dimension(Neue);
+
+NewformDecomposition(Neue);
+
+---
+
+_<x> := PolynomialRing(Rationals());
+F := NumberField(x^2-5);
+OF := Integers(F);
+primes := [p[1] : p in Factorization(229*OF)];
+// #primes;
+k := [2,2];
+S1 := HilbertCuspForms(F, 1*OF, k);
+S229a := HilbertCuspForms(F, primes[1], k);
+S229b := HilbertCuspForms(F, primes[2], k);
+S229 := HilbertCuspForms(F, 229*OF, k);
+
+Dimension(S1);
+// Dimension(NewSubspace(S1));
+Dimension(S229a);
+// Dimension(NewSubspace(S229a));
+Dimension(S229b);
+// Dimension(NewSubspace(S229b));
+Dimension(S229);
+Dimension(NewSubspace(S229));
+
+Dimension(NewSubspace(S229, primes[2]));
+Dimension(NewSubspace(S229, primes[1]));
+
+
+NewformDecomposition(NewSubspace(S229)); // takes a while
+
+---
+
+_<x> := PolynomialRing(Rationals());
+F := NumberField(x^2-5);
+OF := Integers(F);
+// primes := [p[1] : p in Factorization(229*OF)];
+// #primes;
+k := [2,2];
+
+lvl := Factorization(229*OF)[1][1];
+S229a_neue := NewSubspace(HilbertCuspForms(F, lvl, k));
+
+
+primes := PrimesUpTo(13,F);
+// [Norm(p) : p in primes];
+
+for p in primes do HeckeOperator(S229a_neue, p); print(""); end for;
+
+---
+
+_<x> := PolynomialRing(Rationals());
+F := NumberField(x^2-5);
+OF := Integers(F);
+// primes := [p[1] : p in Factorization(229*OF)];
+// #primes;
+k := [2,2];
+
+lvl := Factorization(229*OF)[1][1];
+S229a_neue := NewSubspace(HilbertCuspForms(F, lvl, k));
+
+primes := PrimesUpTo(13,F);
+
+for f in Eigenforms(S229a_neue) do
+    for p in primes do HeckeEigenvalue(f,p);
+    end for;
+    print("");
+    end for;
+
+---
+
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+primes := [p[1] : p in Factorization(31 * OF)];
+// #primes; // = 2, ambos tienen multiplicidad 1 en 31 * OF (!)
+
+k := [2,2,2];
+// S1 := HilbertCuspForms(F, 1 * OF, k);
+// S31a := HilbertCuspForms(F, primes[1], k);
+// S31b := HilbertCuspForms(F, primes[2], k);
+S31 := HilbertCuspForms(F, 31 * OF, k);
+
+// Dimension(S1); // 0
+// Dimension(NewSubspace(S1)); // 0
+//
+// Dimension(S31a); // 86
+// Dimension(NewSubspace(S31a)); // 86
+//
+// Dimension(S31b); // takes a while ...
+// Dimension(NewSubspace(S31b)); // 2722
+//
+// Dimension(S31);
+// Dimension(NewSubspace(S31)); // 81602
+// Dimension(NewSubspace(S31, primes[2])); // 87046
+// Dimension(NewSubspace(S31, primes[1])); // 81774
+// ?`Esta diferencia tiene que ver con que las multiplicidades sean distintas?
+// Dimension(NewSubspace(S31, primes[1] * primes[2])); // 81602
+
+---
+
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+primes := [p[1] : p in Factorization(31 * OF)];
+// #primes; // = 2, ambos tienen multiplicidad 1 en 31 * OF (!)
+
+k := [2,2,2];
+
+S31a := HilbertCuspForms(F, primes[1], k);
+
+S31a_neue := NewSubspace(S31a);
+
+NewformDecomposition(S31a_neue);
+
+---
+
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+primes := [p[1] : p in Factorization(31 * OF)];
+// #primes; // = 2, ambos tienen multiplicidad 1 en 31 * OF (!)
+
+k := [2,2,2];
+
+S31a := HilbertCuspForms(F, primes[1], k);
+S31a_neue := NewSubspace(S31a);
+decomp := NewformDecomposition(S31a_neue);
+// #decomp;
+f := Eigenform(decomp[1]);
+
+f;
+
+primes := PrimesUpTo(23,F);
+for p in primes do
+    Norm(p), HeckeEigenvalue(f,p);
+end for;
+
+---
+
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+S31a_neue := NewSubspace(HilbertCuspForms(F, Factorization(31 * OF)[1][1], k));
+decomp := NewformDecomposition(S31a_neue);
+
+// decomp;
+
+f := Eigenform(decomp[4]);
+
+f;
+
+primes := PrimesUpTo(23,F);
+for p in primes do
+    Norm(p), HeckeEigenvalue(f,p);
+end for;
+
+HeckeEigenvalueField(decomp[1]); // cuerpo de n\'umeros racionales, etc.
+
+// primes := PrimesUpTo(23,F);
+// for i in [5..8] do
+    // f := Eigenform(decomp[i]);
+    // f;
+    // for p in primes do
+        // Norm(p), HeckeEigenvalue(f,p);
+    // end for;
+    // print("");
+// end for;
+
+---
+
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+primes7 := [ p[1] : p in Factorization(7 * OF)];
+
+// for p in primes7 do
+    // Norm(p);
+// end for;
+
+// S1 := HilbertCuspForms(F, 1 * OF, k);
+S7a_neue := NewSubspace(HilbertCuspForms(F, primes7[1], k));
+// S7b_neue := NewSubspace(HilbertCuspForms(F, primes7[2], k));
+// S7_neue := NewSubspace(HilbertCuspForms(F, 7 * OF, k));
+
+// Dimension(S7a_neue);
+decomp := NewformDecomposition(S7a_neue);
+
+// decomp;
+
+primes := PrimesUpTo(23,F);
+for i in [1..#decomp] do
+    f := Eigenform(decomp[i]);
+    f;
+    for p in primes do
+        Norm(p), HeckeEigenvalue(f,p);
+    end for;
+    print("");
+end for;
+
+---
+
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+primes7 := [ p[1] : p in Factorization(7 * OF)];
+
+// for p in primes7 do
+    // Norm(p);
+// end for;
+
+// S1 := HilbertCuspForms(F, 1 * OF, k);
+S7a_neue := NewSubspace(HilbertCuspForms(F, primes7[1], k));
+// S7b_neue := NewSubspace(HilbertCuspForms(F, primes7[2], k));
+// S7_neue := NewSubspace(HilbertCuspForms(F, 7 * OF, k));
+
+// Dimension(S7a_neue);
+decomp := NewformDecomposition(S7a_neue);
+
+// decomp;
+
+primes := PrimesUpTo(23,F);
+LL := [* *];
+for i in [1..#decomp] do
+    L := [* *];
+    f := Eigenform(decomp[i]);
+    // f;
+    for p in primes do
+        L := Append(L,HeckeEigenvalue(f,p));
+    end for;
+    print("");
+    LL := Append(LL,L);
+end for;
+
+[Norm(p) : p in primes];
+print("");
+for L in LL do
+    L;
+    print("");
+end for;
+
+---
+
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+primes7 := [ p[1] : p in Factorization(7 * OF)];
+
+// for p in primes7 do
+    // Norm(p);
+// end for;
+
+// S1 := HilbertCuspForms(F, 1 * OF, k);
+S7a_neue := NewSubspace(HilbertCuspForms(F, primes7[1], k));
+// S7b_neue := NewSubspace(HilbertCuspForms(F, primes7[2], k));
+// S7_neue := NewSubspace(HilbertCuspForms(F, 7 * OF, k));
+
+// Dimension(S7a_neue);
+decomp := NewformDecomposition(S7a_neue);
+
+// decomp;
+
+primes := PrimesUpTo(23,F);
+for i in [1..#decomp] do
+    f := Eigenform(decomp[i]);
+    // f;
+    for p in primes do
+        HeckeEigenvalue(f,p);
+    end for;
+    ;
+    HeckeEigenvalueField(decomp[i]);
+    print("");
+end for;
+
+---
+
+primes6 := [ p[1] : p in Factorization(6 * OF)];
+
+// for p in primes6 do
+    // Norm(p);
+// end for;
+
+// S1 := HilbertCuspForms(F, 1 * OF, k);
+// S6a_neue := NewSubspace(HilbertCuspForms(F, primes6[1], k)); // 24
+// S6b_neue := NewSubspace(HilbertCuspForms(F, primes6[2], k)); // 80
+// S6_neue := NewSubspace(HilbertCuspForms(F, 6 * OF, k)); // 508
+
+Dimension(NewSubspace(HilbertCuspForms(F, 6 * OF, k), primes6[1]));
+
+---
+
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+primes2 := [ p[1] : p in Factorization(2 * OF)];
+
+// for p in primes2 do
+    // Norm(p);
+// end for;
+
+S2a_neue := NewSubspace(HilbertCuspForms(F, primes2[1], k)); // 24
+// S2_neue := NewSubspace(HilbertCuspForms(F, 2 * OF, k)); // 24
+// S2 := HilbertCuspForms(F, 2 * OF, k); // 24
+
+Dimension(S2a_neue);
+;
+decomp := NewformDecomposition(S2a_neue);
+// decomp;
+
+primes := PrimesUpTo(23,F);
+for i in [1..#decomp] do
+    L := [* *];
+    f := Eigenform(decomp[i]);
+    // f;
+    for p in primes do
+        L := Append(L,HeckeEigenvalue(f,p));
+    end for;
+    L;
+    HeckeEigenvalueField(decomp[i]);
+    print("");
+end for;
+
+***OUTPUT***
+
+24
+[* -1, -4, 1, 4, -5, 3, -4, 8, 4 *]
+Rational Field
+
+[* 0, -2, -1, 3, 4, 3, -6, 6, -6 *]
+Rational Field
+
+[* 0, 2, -1, -3, -4, -3, 6, 6, 6 *]
+Rational Field
+
+[* -1, 4, 1, -4, 5, -3, 4, 8, -4 *]
+Rational Field
+
+[*
+    2,
+    0,
+    -1,
+    $.1,
+    1/3*$.1,
+    -4/3*$.1,
+    2/3*$.1,
+    -6,
+    -4/3*$.1
+*]
+Number Field with defining polynomial x^2 - 18 over the Rational Field
+
+[*
+    -3,
+    $.1,
+    -1,
+    1/5*(-2*$.1^3 + 23*$.1),
+    1/5*($.1^3 - 14*$.1),
+    1/5*($.1^3 - 4*$.1),
+    1/5*(2*$.1^3 - 23*$.1),
+    -6,
+    1/5*($.1^3 - 19*$.1)
+*]
+Number Field with defining polynomial x^4 - 19*x^2 + 75 over the Rational Field
+
+[*
+    1/157899072*(81993*$.1^12 - 4492779*$.1^10 + 89422411*$.1^8 -
+        792667002*$.1^6 + 3031420552*$.1^4 - 4007761996*$.1^2 + 1130401728),
+    $.1,
+    1,
+    1/947394432*(-270589*$.1^13 + 16515487*$.1^11 - 370682351*$.1^9 +
+        3715487498*$.1^7 - 15987034328*$.1^5 + 24515011708*$.1^3 -
+        9485882208*$.1),
+    1/947394432*(1669*$.1^13 + 1116001*$.1^11 - 53316929*$.1^9 + 821585262*$.1^7
+        - 4966896856*$.1^5 + 11331136740*$.1^3 - 5757698880*$.1),
+    1/118424304*(-33615*$.1^13 + 2203936*$.1^11 - 52999910*$.1^9 +
+        567134095*$.1^7 - 2619241398*$.1^5 + 4480768556*$.1^3 - 2023871940*$.1),
+    1/1894788864*(-538043*$.1^13 + 28370721*$.1^11 - 533228865*$.1^9 +
+        4292691758*$.1^7 - 13062937624*$.1^5 + 3286805092*$.1^3 +
+        14200572096*$.1),
+    1/78949536*(8539*$.1^12 - 408193*$.1^10 + 7286177*$.1^8 - 69799310*$.1^6 +
+        417447416*$.1^4 - 1083723652*$.1^2 + 273629376),
+    1/1894788864*(737253*$.1^13 - 45638495*$.1^11 + 1040259199*$.1^9 -
+        10618300658*$.1^7 + 47005221672*$.1^5 - 77241163036*$.1^3 +
+        41641383744*$.1)
+*]
+Number Field with defining polynomial x^14 - 67*x^12 + 1667*x^10 - 18938*x^8 +
+    98600*x^6 - 219244*x^4 + 182016*x^2 - 27648 over the Rational Field
+
+*********************************
+*********************************
+
+_<w> := PolynomialRing(Rationals());
+F<w> := NumberField(w ^ 3 - w ^ 2 - 4 * w + 3);
+OF := Integers(F);
+
+k := [2,2,2];
+
+// Factorization(3 * OF);
+primes3 := [ p[1] : p in Factorization(3 * OF)];
+// [Norm(p) : p in primes3];
+
+e := OF ! w;
+N := ideal< OF | e ^ 2>;
+
+// Norm(primes3[1]);
+// S3a := HilbertCuspForms(F, primes3[1], k);
+// Norm(primes3[2]);
+S3b_neue := NewSubspace(HilbertCuspForms(F, N, k));
+
+// Dimension(S3b_neue);
+
+Algebra(QuaternionOrder(S3b_neue));
+
+
+***** NIVEL 5 Y POTENCIAS
+*****
+
+_<w> := PolynomialRing(Rationals());
+F<w> := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+P := 5;
+primesOverP := [ p[1] : p in Factorization(P * OF)];
+Factorization(P * OF);
+// [Norm(p) : p in primesOverP];
+// Norm(P * OF);
+
+// S1_n := NewSubspace(HilbertCuspForms(F, 1 * OF, k));
+// Dimension(S1_n); // 0
+// S5a_n := NewSubspace(HilbertCuspForms(F, primesOverP[1], k));
+// Dimension(S5a_n); // 12
+// S5a2_n := NewSubspace(HilbertCuspForms(F, primesOverP[1]^2, k));
+// Dimension(S5a2_n); // 56
+S5a3_n := NewSubspace(HilbertCuspForms(F, 5*OF, k));
+Dimension(S5a3_n); // 272
+
+
+// S := S5a_n;
+// decomp := NewformDecomposition(S);
+// decomp;
+
+// primes := PrimesUpTo(23,F);
+// for i in [1..#decomp] do
+    // f := Eigenform(decomp[i]);
+    // L := [* *];
+    // for p in primes do
+        // L := Append(L,HeckeEigenvalue(f,p));
+    // end for;
+    // L;
+    // HeckeEigenvalueField(decomp[i]);
+    // print("");
+// end for;
+
+*****
+*****
+
+_<w> := PolynomialRing(Rationals());
+F<w> := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+P := 7;
+primesOverP := [ p[1] : p in Factorization(P * OF)];
+Factorization(P * OF);
+[Norm(p) : p in primesOverP];
+// Norm(P * OF);
+
+// S1_n := NewSubspace(HilbertCuspForms(F, 1 * OF, k));
+S7a_n := NewSubspace(HilbertCuspForms(F, primesOverP[1], k));
+// S7b_n := NewSubspace(HilbertCuspForms(F, primesOverP[2], k));
+S := S7a_n;
+
+Dimension(S);
+
+decomp := NewformDecomposition(S);
+decomp;
+
+primes := PrimesUpTo(23,F);
+// for i in [1..#decomp] do
+for i in [1..2] do
+    f := Eigenform(decomp[i]);
+    L := [* *];
+    for p in primes do
+        L := Append(L,HeckeEigenvalue(f,p));
+    end for;
+    L;
+    HeckeEigenvalueField(decomp[i]);
+    print("");
+end for;
+
+*****
+*****
+
+_<w> := PolynomialRing(Rationals());
+F<w> := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+P := 31;
+primesOverP := [ p[1] : p in Factorization(P * OF)];
+Factorization(P * OF);
+[Norm(p) : p in primesOverP];
+// Norm(P * OF);
+
+// S1_n := NewSubspace(HilbertCuspForms(F, 1 * OF, k));
+S31a_n := NewSubspace(HilbertCuspForms(F, primesOverP[1], k));
+// S31b_n := NewSubspace(HilbertCuspForms(F, primesOverP[2], k));
+S := S31a_n;
+
+Dimension(S);
+
+decomp := NewformDecomposition(S);
+decomp;
+
+primes := PrimesUpTo(23,F);
+// for i in [1..#decomp] do
+for i in [1..2] do
+    f := Eigenform(decomp[i]);
+    L := [* *];
+    for p in primes do
+        L := Append(L,HeckeEigenvalue(f,p));
+    end for;
+    L;
+    HeckeEigenvalueField(decomp[i]);
+    print("");
+end for;
+
+******
+******
+
+_<w> := PolynomialRing(Rationals());
+F<w> := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+primes := [2,3,5,7,11,13,17,19,23];
+Primes := [* *];
+for p in primes do
+    Fact := Factorization(p * OF);
+    for i in [1..#Fact] do
+        Primes := Append(Primes, Fact[i][1]);
+    end for;
+end for;
+
+k := [2,2,2];
+
+P := 31;
+primesOverP := [ p[1] : p in Factorization(P * OF)];
+Factorization(P * OF);
+[Norm(p) : p in primesOverP];
+// Norm(P * OF);
+
+// S1_n := NewSubspace(HilbertCuspForms(F, 1 * OF, k));
+S31a_n := NewSubspace(HilbertCuspForms(F, primesOverP[1], k));
+// S31b_n := NewSubspace(HilbertCuspForms(F, primesOverP[2], k));
+S := S31a_n;
+
+Dimension(S);
+
+decomp := NewformDecomposition(S);
+decomp;
+
+// primes := PrimesUpTo(23,F);
+// for i in [1..#decomp] do
+for i in [1..2] do
+    f := Eigenform(decomp[i]);
+    L := [* *];
+    N := [* *];
+    for P in Primes do
+        L := Append(L,HeckeEigenvalue(f,P));
+        N := Append(N,Norm(P));
+    end for;
+    L;
+    N;
+    HeckeEigenvalueField(decomp[i]);
+    print("");
+end for;
+
+***OUTPUT
+***
+[* 3, 2, -3, 4, -6, 0, 2, 2, 16, -3, -6, -21, 3, 5, -8 *]
+[* 8, 27, 5, 7, 49, 11, 121, 13, 169, 17, 289, 6859, 23, 23, 23 *]
+Rational Field
+
+[* 3, 2, -3, -4, 6, 0, -2, -2, -16, 3, 6, -21, -3, -5, -8 *]
+[* 8, 27, 5, 7, 49, 11, 121, 13, 169, 17, 289, 6859, 23, 23, 23 *]
+Rational Field

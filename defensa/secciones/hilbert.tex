@@ -1,0 +1,521 @@
+\theoremstyle{remark}
+\newtheorem{teoMultUno}{Teorema}[section]
+\newtheorem{teoPrincipioKoecher}[teoMultUno]{Teorema}
+\newtheorem{defFormaEliptica}{Definici\'{o}n}[section]
+\newtheorem{obsSimplificacionCuadraticoReal}[teoMultUno]%
+	{Simplificaci\'{o}n}
+\newtheorem{obsSubgruposCongruencia}[teoMultUno]{Observaciones}
+\newtheorem{defFormaHilbertClasica}[teoMultUno]{Definici\'{o}n}
+\newtheorem{obsDesarrolloDeFou}[teoMultUno]{Observaci\'{o}n}
+\newtheorem{defNotacion}[teoMultUno]{Definici\'{o}n}
+%
+\newtheorem{defFormasNuevas}[teoMultUno]{Definici\'{o}n}
+\newtheorem{coroBaseFormasNuevas}[teoMultUno]{Corolario}
+
+%-------------
+
+\subsection{Formas modulares: repaso}
+
+\begin{frame}{El semiplano complejo superior}
+	% Empezamos situ\'{a}ndonos en un espacio conocido:
+	El semiplano complejo superior es
+	\begin{align*}
+		\hP & \,=\,\big\{z\in\bb{C}\,:\,\Im(z)>0\big\}
+		\text{ .}
+	\end{align*}
+	%
+	% y un grupo actuando en $\hP$
+	El \emph{grupo modular},
+	\begin{align*}
+		\SL[2](\bb{Z}) & \,=\,\bigg\{
+			\begin{bmatrix} a & b \\ c & d \end{bmatrix} \,:\,
+			a,b,c,d\in\bb{Z},\,ad-bc=1\bigg\}% \\
+		\text{ ,}
+	\end{align*}
+	%
+	act\'{u}a en $\hP$ v\'{\i}a
+	% El grupo $\SL[2](\bb R)$ act\'{u}a transitivamente v\'{\i}a
+	\begin{align*}
+		\begin{bmatrix} a & b \\ c & d \end{bmatrix}\cdot z & \,=\,
+			\frac{az+b}{cz+d}
+		\text{ .}
+	\end{align*}
+	%
+\end{frame}
+
+\begin{frame}{El grupo modular}
+	$\Gamma:=\SL[2](\bb Z)$
+	\begin{itemize}
+		\item El cociente $Y(1)=\Gamma\backslash\hP$ parametriza clases
+			de isomorfismo de curvas el\'{\i}pticas sobre $\bb{C}$:
+			\begin{align*}
+				\tau\in\hP\mapsto E_\tau & \quad\text{,}\quad
+				\gamma\tau=\tau'\,\Rightarrow\,
+					E_\tau\simeq E_{\tau'}
+			\end{align*}
+			%
+	% --curvas complejas con estructura de grupo (abeliano) compatible:
+	% $Y(1)$ es una curva compleja no compacta, se puede compactificar
+	% agregando un \'{u}nico punto adicional, $\infty$, la ``c\'{u}spide''
+	% en infinito.
+		\item La curva compleja $Y(1)$ admite una compactificaci\'{o}n
+			agregando una \emph{c\'{u}spide}:
+			$X(1)=Y(1)\cup\{\infty\}$
+	% Las funciones (meromorfas, holomorfas) en el cociente, est\'{a}n en
+	% biyecci\'{o}n con las funciones en el semiplano (meromorfas,
+	% holomorfas) que son invariantes por la acci\'{o}n del grupo modular.
+		\item Existe una biyecci\'{o}n
+			\begin{align*}
+				\Big\{f:\,\Gamma\backslash\hP\rightarrow\bb{C}
+					\Big\} & \,\leftrightarrow\,
+				\Big\{f:\,\hP\rightarrow\bb{C}\,:\,
+					f(\gamma z)=f(z)\,
+					\forall\gamma\in\Gamma\Big\}
+			\end{align*}
+			%
+	\end{itemize}
+	%
+	% Adem\'{a}s, las funciones meromorfas u holomorfas en $X(1)$ se
+	% corresponden con funciones meromorfas u holomorfas, invariantes y que
+	% satisfacen una condici\'{o}n de crecimiento a medida que el argumento
+	% tiende al borde del semiplano. A tales funciones las llamamos
+	% funciones modulares.
+\end{frame}
+
+\begin{frame}{Formas modulares para $\SL[2](\bb{Z})$}
+	% Ahora bien, como $X(1)$ es una superficie de Riemann compacta, no
+	% existen funciones holomorfas en $X(1)$, es decir, holomorfas en
+	% $Y(1)$ que se extiendan a una funci\'{o}n holomorfa en la
+	% compactificaci\'{o}n. Pero s\'{\i} existen funciones holomorfas, que
+	% verifican una regla de transformaci\'{o}n en relaci\'{o}n con la
+	% acci\'{o}n del grupo modular y que son, en cierto sentido, holomorfas
+	% en las c\'{u}spides, en $\infty$.
+	\begin{defFormaEliptica}\label{def:formaelipticacompleto}
+		Dado $k\in\bb{Z}$, decimos que $f:\,\hP\rightarrow\bb{C}$ es
+		una \emph{forma modular de peso $k$ para $\SL[2](\bb Z)$}
+		($f\in\modular{k}{\SL[2](\bb Z)}$), si:
+		\begin{enumerate}
+			\item\label{def:formaelipticacompleto:holomorfia}
+				$f$ es holomorfa en $\hP$,
+			\item\label{def:formaelipticacompleto:invarianza}
+				para toda
+				\begin{math}
+					\left[\begin{smallmatrix}
+						a & b \\ c & d
+					\end{smallmatrix}\right]\in
+						\SL[2](\bb Z)
+				\end{math}
+				\begin{align*}
+					f\bigg(\dfrac{az+b}{cz+d}\bigg) & \,=\,
+						(cz+d)^{k}\,f(z)
+					\quad\text{y}
+				\end{align*}
+			\item\label{def:formaelipticacompleto:cuspides}
+				$f$ es holomorfa en $\infty$;
+			\seti
+		\end{enumerate}
+		%
+		una forma $f\in\modular{k}{\SL[2](\bb Z)}$ se dice
+		\emph{cuspidal} ($f\in\spitz{k}{\SL[2](\bb Z)}$), si,
+		adem\'{a}s,
+		\begin{enumerate}
+			\conti
+			\item\label{def:formaelipticacompleto:cuspidal}
+				$f$ se anula en $\infty$.
+			\seti
+		\end{enumerate}
+		%
+	\end{defFormaEliptica}
+\end{frame}
+
+\begin{frame}{Desarrollo de Fourier}
+	Si $f$ verifica \ref{def:formaelipticacompleto:holomorfia} y
+	\ref{def:formaelipticacompleto:invarianza}, entonces posee un
+	\emph{desarrollo de Fourier}:
+	\begin{align*}
+		f(z) & \,=\,\sum_{n\in\bb{Z}}\,a_{n}(f)\,e^{2\pi i z n}
+		\text{ .}
+	\end{align*}
+	%
+	\begin{itemize}
+		\item $f\in\modular{k}{\SL[2](\bb{Z})}$, si $a_{n}(f)=0$,
+			siempre que $n<0$, y
+		\item $f\in\spitz{k}{\SL[2](\bb{Z})}$, si, adem\'{a}s,
+			$a_{0}(f)=0$.
+	\end{itemize}
+	%
+	% Equivalentemente, estas condiciones de holomorf\'{\i}a y
+	% anulaci\'{o}n, se pueden expresar en t\'{e}rminos del orden de
+	% crecimiento de $f$ a medida que el argumento tiende a $\infty$ y al
+	% borde de $\hP$
+\end{frame}
+
+\begin{frame}{Otros grupos}
+	El grupo $\SL[2](\bb R)$ act\'{u}a transitivamente en $\hP$. Podemos
+	obtener un conciente $\Gamma\backslash\hP$ a partir de
+	$\Gamma\subset\SL[2](\bb R)$ bajo ciertas condiciones:
+	% Esta generalidad adicional ser\'{a} \'{u}til m\'{a}s adelante, en
+	% relaci\'{o}n con grupos provenientes de \'{a}lgebras de cuaterniones.
+	\begin{itemize}
+		\item $\SL[2](\bb{Z})$ y subgrupos de congruencia, por ejemplo
+			\begin{align*}
+				\Gamma_{0}(N) & \,=\,\bigg\{
+					\begin{bmatrix} a & b \\
+					c & d \end{bmatrix}\in\SL[2](\bb{Z})
+					\,:\,c\equiv 0\,(\modulo\,N)\bigg\}
+				\text{ ;}
+			\end{align*}
+			%
+		\item grupos de unidades de \'{o}rdenes en \'{a}lgebras de
+			cuaterniones indefinidas (m\'{a}s adelante).
+	\end{itemize}
+	%
+\end{frame}
+
+
+\subsection{Formas de Hilbert}
+
+\begin{frame}{Algunos preliminares}
+	Sea $F=\bb Q(\sqrt d)$, $d>0$. Existen dos inclusiones
+	$F\hookrightarrow\bb R$:
+	% Podemos mirar $F$ dentro de $\bb R$ de dos maneras:
+	\begin{align*}
+		\tau_1:\,a+b\sqrt d\mapsto a+b\sqrt d & \quad\text{y}\quad
+			\tau_2:\,a+b\sqrt d\mapsto a-b\sqrt d
+		\text{ .}
+	\end{align*}
+	%
+	Un elemento $x\in F$ se dice \emph{totalmente positivo} (escribimos
+	$x\gg 0$ o $x\in F^{\times}_{+}$), si $x_{j}=\tau_j(x)>0$ para $j=1,2$.
+	\begin{defNotacion}\label{def:notaciontotalmentereal}
+		\begin{itemize}
+			\item $\oka{F}$: anillo de enteros de $F$.
+			\item $\Class{F}$: \emph{grupo de clases} de $F$
+				($\frak{a}\sim\frak{b}$, si
+				$\frak{a}=\lambda\frak{b}$,
+				$\lambda\in F^{\times}$).
+			\item $\pClass{F}$: \emph{grupo de clases estrictas}
+				de $F$ ($\lambda\gg0$).
+			\item $\lugares{F}$: conjunto de lugares de  $F$
+				(primos $\frak p\subset \oka F$,
+				$|\cdot|_{\tau_1}$, $|\cdot|_{\tau_2}$).
+		\end{itemize}
+	\end{defNotacion}
+\end{frame}
+
+\begin{frame}{Ejemplos}
+	\begin{itemize}
+		\item $F=\bb{Q}(\sqrt{d})$, $d>0$,
+			\begin{align*}
+				\oka F & \,=\,
+				\begin{cases}
+					\Big\{a+b\tfrac{1+\sqrt d}{2}\,:\,
+						a,b\in\bb Z\Big\}
+						& d\equiv 1\,(4) \\[5pt]
+					\Big\{a+b\sqrt d\,:\,a,b\in\bb Z\Big\}
+						& d\equiv2,3\,(4)
+				\end{cases}
+				\text{ ;}
+			\end{align*}
+			%
+		\item $F=\bb{Q}(w)$, $w^3 - w^2 - 8\,w + 7=0$,
+			$\oka F=\bb Z[w]$.
+	\end{itemize}
+	%
+	\begin{center}
+	\begin{tabular}{c|c|c}
+		& $h$ & $h^{+}$ \\
+		\hline
+		$\bb{Q}(\sqrt{5})$ & $1$ & $1$ \\
+		$\bb{Q}(w)$ & $1$ & $2$ \\
+		$\bb{Q}(\sqrt{10})$ & $2$ & $2$
+	\end{tabular}
+	\begin{tabular}{c}
+		\vphantom{$h^{+}$} \\
+		%
+		\vphantom{$\bb Q(\sqrt 5)$} \\
+		\vphantom{$\bb Q(w)$}
+			\begin{math}
+				\rightarrow \pClass{\bb Q(w)} =
+				\{\generado{1},\generado{w^2 -4}\}
+			\end{math} \\
+		\vphantom{$\bb Q(\sqrt 10)$}
+	\end{tabular}
+	\end{center}
+	% En general,
+	% $h^+=h\Leftrightarrow \oka{F,+}^\times=(\oka F^\times)^2$.
+\end{frame}
+
+\begin{frame}{Acci\'{o}n en $\hP^{2}$}
+	% Las formas modulares de Hilbert se pueden ver como generalizaciones a
+	% cuerpos totalmente reales de la noci\'{o}n de forma modular
+	% el\'{\i}ptica. 
+	%
+	% Si queremos extender la definici\'{o}n \ref{def:formaeliptica},
+	% necesitamos contar con un espacio $H$ que juegue el rol de $\hP$ y con
+	% un grupo $G(F)$ que act\'{u}e en $H$ y que tenga algo que ver con $F$.
+	Si $(z_1,z_2)\in\hP^2$ y
+	\begin{math}
+		\left[\begin{smallmatrix}
+			a & b \\ c & d
+		\end{smallmatrix}\right]\in\GLtp[2](F)=
+			\Big\{\gamma\in\GL[2](F)\,:\,\det(\gamma)\gg 0\Big\}
+	\end{math},
+	\begin{align*}
+		\begin{bmatrix} a & b \\ c & d \end{bmatrix}\cdot (z_1,z_2)
+			& \,:=\,\bigg(
+			\frac{a_{1}z_{1}+b_{1}}{c_{1}z_{1}+d_{1}},
+			\frac{a_{2}z_{2}+b_{2}}{c_{2}z_{2}+d_{2}}\bigg)
+		\text{ .}
+	\end{align*}
+	%
+	Dadas $f:\,\hP^2\rightarrow\bb{C}$ y
+	\begin{math}
+		\gamma= \left[\begin{smallmatrix}
+			a & b \\ c & d
+			\end{smallmatrix}\right]\in\GLtp[2](F)
+	\end{math},
+	\begin{align*}
+		f\operadormatrices{\null}{\gamma}(z_1,z_2) & \,:=\,
+			\frac{\det(\gamma_1)}{(c_1z_1+d_1)^{2}}\,
+			\frac{\det(\gamma_2)}{(c_2z_2+d_2)^{2}}\,
+			f(\gamma\cdot (z_1,z_2))
+		\text{ .}
+	\end{align*}
+	%
+
+\end{frame}
+
+\begin{frame}{Subgrupos de congruencia}
+	% El grupo modular admite un an\'{a}logo sobre un cuerpo totalmente
+	% real $F$: $\SL[2](\oka F)$, el \emph{grupo modular de Hilbert}.
+	%
+	% El grupo de unidades $\oka{F}^{\times}$ (y, en especial, el subgrupo
+	% de unidades totalmente positivas, $\oka{F,+}^{\times}$) juega un rol
+	% importante en la teor\'{\i}a aritm\'{e}tica de las formas de Hilbert,
+	% con lo cual consideramos, de entrada, los grupos
+	Si $F=\bb Q(\sqrt d)$,
+	$\oka F^\times=\big\{\pm\epsilon_0^k\,:\,k\in\bb Z\big\}$. Definimos
+	\begin{align*}
+		\GLtp[2](\oka{F}) & \,:=\,\bigg\{
+			\begin{bmatrix} a & b \\ c & d \end{bmatrix} \,:\,
+				a,b,c,d\in\oka{F},\,ad-bc\in\oka{F,+}^{\times}
+				\bigg\} \\
+		\Gamma_{0}(\frak{N}) & \,:=\, \bigg\{
+			\begin{bmatrix} a & b \\ c & d \end{bmatrix}\in
+				\GLtp[2](\oka{F}) \,:\,c\in\frak{N}\bigg\}
+			\qquad\text{(\phantom)}\frak N\subset\oka F
+				\text{\phantom().}
+	\end{align*}
+	%
+	\begin{obsSubgruposCongruencia}\label{obs:subgruposcongruencia}
+		\begin{itemize}
+			\item Si $\epsilon\in\oka{F,+}^\times$ y
+				$\mu\in\oka F$,
+				\begin{math}
+					\left[\begin{smallmatrix}
+						\epsilon & \mu\vphantom{1} \\
+						& 1
+					\end{smallmatrix}\right]\in
+					\Gamma_0(\frak N)_\infty
+				\end{math};
+			\item $\Gamma_0(\frak N)\backslash\hP^2$ es una
+				superficie no compacta (finitas c\'{u}spides);
+			\item asumimos que $h^+(F)=1$.
+		\end{itemize}
+	\end{obsSubgruposCongruencia}
+\end{frame}
+
+\begin{frame}{Formas modulares para $\Gamma_{0}(\frak{N})$}
+	\begin{defFormaHilbertClasica}\label{def:formahilbertclasica}
+		Una funci\'{o}n $f:\,\hP^2\rightarrow\bb{C}$ es una
+		\emph{forma modular de peso $(2,2)$ para %
+		$\Gamma_{0}(\frak{N})$} ($f\in\modularH{2}{\frak{N}}$), si:
+		\begin{enumerate}
+			\item\label{def:formahilbertclasica:holomorfia}
+				$f$ es holomorfa en $\hP^2$;
+			\item\label{def:formahilbertclasica:invarianza}
+				para toda
+				$\gamma\in\Gamma_{0}(\frak{N})$,
+				\begin{math}
+					f\operadormatrices{\null}{\gamma}=f
+				\end{math}.
+			\seti
+		\end{enumerate}
+	\end{defFormaHilbertClasica}
+	\begin{obsDesarrolloDeFou}[Desarrollo de Fourier]%
+		\label{obs:desarrollodefou}
+		Por \ref{def:formahilbertclasica:invarianza}, $f(z+\mu)=f(z)$
+		para todo $\mu\in\oka F$ y
+		\begin{align*}
+			f & \,=\,\sum_{\nu\in\oka F^{\perp}}\,a_{\nu}(f)\,
+				e^{2\pi i \traza(\nu z)}
+			\text{ ,}
+		\end{align*}
+		%
+		donde $\traza(\nu z)=\nu_1z_1+\nu_2z_2$ y
+		\begin{math}
+			\oka F^{\perp}=\big\{
+				\nu\in F\,:\,\traza(\nu\oka F)\subset\bb{Z}
+				\big\}
+		\end{math}.
+	\end{obsDesarrolloDeFou}
+\end{frame}
+
+\begin{frame}{Principio de Koecher y formas cuspidales}
+	\begin{teoPrincipioKoecher}\label{thm:principiokoecher}
+		\begin{itemize}
+			\item $a_{\epsilon\nu}= a_{\nu}$ para todo
+				$\nu\in\oka F^{\perp}$,
+				$\epsilon\in\oka{F,+}^\times$;
+			\item si $a_{\nu}\not=0$, entonces $\nu=0$ o
+				$\nu\gg 0$.
+		\end{itemize}
+	\end{teoPrincipioKoecher}
+
+	Para ver lo que pasa en otra c\'{u}spide, $x\in\bb{P}^{1}(F)$, miramos
+	el desarrollo de $f\operadormatrices{\null}{A}$, con
+	$A\cdot\infty=x$.
+	% Toda funci\'{o}n holomorfa y de peso $\peso{k}$ invariante para
+	% $\Gamma_{0}(\frak{N},\frak{a})$ es holomorfa en las c\'{u}spides.
+	\begin{defFormaHilbertClasica}\label{def:formahilbertclasicacuspidal}
+		Una forma $f$ se dice \emph{cuspidal}
+		($f\in\spitzH{2}{\frak{N}}$), si, adem\'{a}s,
+		\begin{enumerate}
+			\conti
+			\item\label{def:formahilbertclasica:cuspidal}
+				\begin{math}
+					a_{0}\big(f\operadormatrices{%
+						\null}{A}\big)=0
+				\end{math} para toda $A\in\GLtp[2](F)$.
+			\seti
+		\end{enumerate}
+		%
+	\end{defFormaHilbertClasica}
+\end{frame}
+
+\begin{frame}{Operadores de Hecke y coeficientes de Fourier}
+	El espacio $\spitzH2{\frak N}$ posee un producto interno y, para cada
+	primo $\frak p\nmid\frak N$, operadores
+	\begin{math}
+		T_{\frak p}:\,\spitzH2{\frak N}\rightarrow \spitzH2{\frak N}
+	\end{math} tales que
+	\begin{itemize}
+		\item $T_{\frak p}T_{\frak q}=T_{\frak q}T_{\frak p}$ y
+		\item
+			\begin{math}
+				\langle T_{\frak p}f,g\rangle=
+					\langle f,T_{\frak p}g\rangle
+			\end{math}.
+	\end{itemize}
+	%
+	Dado $\frak{m}\subset\oka{F}$, existe $\nu\in\diferente^{-1}$,
+	$\nu\gg0$ tal que $\frak{m}=\nu\,\diferente$.
+	\begin{align*}
+		C(\frak m,f) & \,:=\,\idnorm(\frak m)\,a_\nu(f)
+		\text{ .} \\
+		C(\frak m,T_{\frak p}f) & \,=\,
+			\idnorm(\frak p)\,C(\frak{p}^{-1}\frak m,f)\,+\,
+				C(\frak p\frak m,f)
+		\text{ .}
+	\end{align*}
+	%
+	($\frak p\nmid\frak m\Rightarrow C(\frak{p}^{-1}\frak m,f)=0$).
+\end{frame}
+
+\begin{frame}{El espacio de formas nuevas}
+	\begin{defFormasNuevas}\label{def:formasnuevas}
+		Si $\frak N=\frak l\,\frak M$, $\frak l$ primo, existen
+		\begin{math}
+			\iota_1,\iota_\frak{l}:\,\spitzH{2}{\frak{M}}
+				\hookrightarrow\spitzH{2}{\frak{N}}
+		\end{math}.
+		% El \emph{subespacio de formas nuevas en $\frak l$} en
+		% $\spitzH2{\frak N}$ est\'{a} dado por el complemento
+		% ortogonal respecto del p.i. de Petersson,
+		\begin{align*}
+			\spitzH2{\frak N}^{\frak l-\neue} & \,:=\,
+				\Big(
+				\iota_1\big(\spitzH2{\frak M}\big)\,+\,
+				\iota_\frak{l}\big(\spitzH2{\frak M}\big)
+					\Big)^\perp
+				\text{ ,} \\
+			\spitzH2{\frak N}^\neue & \,:=\,
+				\bigcap_{\frak l\mid\frak N}\,
+					\spitzH2{\frak N}^{\frak l-\neue}\,=\,
+				\Big(\spitzH2{\frak N}^\oude\Big)^\perp
+			\text{ .}
+		\end{align*}
+		%
+	\end{defFormasNuevas}
+	Son espacios $T_{\frak p}$-invariantes ($\frak p\nmid\frak N$).
+	\begin{coroBaseFormasNuevas}\label{coro:baseformasnuevas}
+		Existe una base ortogonal para $\spitzH2{\frak N}^\neue$
+		compuesta por autoformas para $T_{\frak p}$,
+		$\frak p\nmid\frak N$ (\emph{formas nuevas}).
+	\end{coroBaseFormasNuevas}
+\end{frame}
+
+\begin{frame}{Formas nuevas}
+	Si $f$ es autoforma,
+	\begin{align*}
+		C(\frak p,f) & \,=\,C(\oka F,T_{\frak p}f)\,=\,
+			\lambda_{\frak p}\,C(\oka F,f)
+			\qquad\text{(\phantom)}\frak p\nmid\frak N
+			\text{\phantom().}
+	\end{align*}
+	%
+	Si $C(\oka F,f)\not=0$, podemos asumir $C(\oka F,f)=1$ (normalizada).
+
+	\begin{teoMultUno}[Multiplicidad uno]\label{coro:multuno}
+		Dado un ideal \'{\i}ntegro $\frak N$ y dado un sistema (de
+		autovalores)
+		\begin{math}
+			\{\lambda_{\frak p}\}_{\frak p\nmid\frak N}\subset
+				\bb{C}
+		\end{math}, existe, a lo sumo, una forma nueva normalizada $f$
+		de nivel $\frak M\mid\frak N$ tal que
+		$C(\frak p,f)=\lambda_{\frak p}$ para todo
+		$\frak p\nmid\frak N$.
+	\end{teoMultUno}
+\end{frame}
+
+\begin{frame}{Calculando $\spitzH2{\frak N}$}
+	\begin{itemize}
+		\item Objetivo: hallar una base para el espacio
+			$\spitzH{2}{\frak{N}}$.
+			% $\spitzH{2}{\frak{N}}$ es un $\bb{C}$-e.v., as\'{\i}
+			% que, en definitiva, lo que vamos a buscar es una base
+			% para este espacio.
+		\item Si $F=\bb Q$, formas modulares el\'{\i}pticas:
+			% Como ocurre en general, si queremos resolver este
+			% problema de manera computacional, vamos a necesitar
+			% contar con una realizaci\'{o}n concreta de este
+			% espacio vectorial, o, mejor dicho, una
+			% representaci\'{o}n equivalente de los operadores de
+			% Hecke.
+			\begin{itemize}
+				\item el espacio $\spitz{2}{N}$
+					% de formas cuspidales el\'{\i}pticas
+					se realiza en la cohomolog\'{\i}a de
+					% la curva modular
+					$X_0(N)$ (Eichler-Shimura);
+				\item si $N$ no es un cuadrado, las formas en
+					$\spitz{2}{N}^{\neue}$ aparecen como
+					combinaciones lineales de series
+					\emph{theta}.
+			\end{itemize}
+			%
+		\item Si $[F:\bb Q]=n$, $f\in\spitzH2{\frak N}$ da lugar a una
+			$n$-forma diferencial holomorfa
+			$f(z_1,\,\dots,\,z_n)\,dz_1\,\cdots\,dz_n$ en
+			$X_0(\frak N)$.
+		\item $n>1$ es un problema dif\'{\i}cil
+			?`Hay otra manera?%de realizar este espacio?
+	\end{itemize}
+	%
+	La correspondencia de Jacquet-Langlands garantiza que estas formas
+	tambi\'{e}n se pueden encontrar en la cohomolog\'{\i}a de otras
+	variedades. En todo caso, alcanza con mirar variedades de dimensi\'{o}n
+	$0$ o $1$.
+\end{frame}

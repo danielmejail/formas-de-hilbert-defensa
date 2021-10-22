@@ -1,0 +1,186 @@
+P = w ^ 3 - w ^ 2 - 8 * w + 7
+P;
+P
+polisirreducible(P)
+F = bnfinit(P);
+F.clgp
+bnfnarrow(F)
+F.w
+F
+F[7]
+F[7][7]
+F.order
+F.ord
+F.or
+F.o
+F[7]
+F.nf
+F.nf.index
+F.nf.zk
+F.bnfnarrow
+bnfnarrow(F)
+bnfnarrow(F).gen
+bnfnarrow(F).cyc
+bnfnarrow(F).or
+bnfnarrow(F).o
+bnfnarrow(F).ord
+bnfnarrow(F).no
+F.nf[6]
+F.nf[6][2]
+F.nf[6][2] ^ 2
+2 + F.nf[6][2] ^ 2
+2 + (F.nf[6][2] ^ 2 - 6)
+2 + (F.nf[6][1] ^ 2 - 6)
+2 + (F.nf[6][3] ^ 2 - 6)
+2 + (F.nf[6][3] ^ 2)
+2 + (F.nf[6][1] ^ 2)
+F.nf[6][1] * F.nf[6][2] * F.nf[6][3]
+bnfnarrow(F).no
+bnfnarrow(F).cyc
+bnfnarrow(F).gen
+%23
+%23 * 2
+%23 ^ 2
+F.nf[6][3] ^ 2 - 4
+F.nf[6][2] ^ 2 - 4
+F.nf[6][1] ^ 2 - 4
+%37 * %36 * %35
+F.nf.roots[1] ^ 2 - 4
+F.nf.roots[2] ^ 2 - 4
+F.nf.roots[3] ^ 2 - 4
+F.nf.roots ^ 2 - 4
+F.nf.roots * F.nf.roots
+F.nf.roots * F.nf.roots~
+F.nf.roots * [1,1,1]~
+F.nf.roots
+prod(F.nf.roots)
+product(F.nf.roots)
+sum(F.nf.roots)
+quit
+f = w ^ 3 - w ^ 2 - 8 * w + 7;
+F = bnfinit(f);
+F.roots
+w
+w^3
+F.w
+F.1
+Mod(f,w^3);
+Mod(f,w^3)
+Mod(w^3,f)
+F.nf
+F.nf.zk
+F.nf.zk[1]
+F.nf.zk[2]
+F.nf.zk[3]
+a = - F.nf.zk[3] - 1
+a
+b = a - 4
+B
+B;
+B = alginit(F.nf,[a,b]);
+B
+B.alghassei
+alghassei(B)
+alghassef(B)
+algbasis(B)
+length(algbasis(B))
+algbasis(B)[1]
+algbasis(B)[1,1]
+B.basis
+basis(B)
+nfbasis(B)
+algbasis(B)
+algsplittingfield(B)
+F.nf.roots
+L = algsplittingfield(B);
+L.roots
+L.pol
+L.nf.roots
+F.nf.roots
+for w in F.nf.roots do
+for( i = 1, 3,i += 1;
+for( i = 1, 3,
+for( i = 1, 3,->
+for( i = 1, 3,)->
+for( i = 1, 3, i += 1; print(5 - F.nf.roots[i] ^ 2 > 0); print(1 - F.nf.roots[i] ^ 2 > 0))
+for( i = 1, 2, i += 1; print(5 - F.nf.roots[i] ^ 2 > 0); print(1 - F.nf.roots[i] ^ 2 > 0))
+for( i = 0, 2, i += 1; print(5 - F.nf.roots[i] ^ 2 > 0); print(1 - F.nf.roots[i] ^ 2 > 0))
+for( i = 1, 3, print(5 - F.nf.roots[i] ^ 2 > 0); print(1 - F.nf.roots[i] ^ 2 > 0); i += 1)
+for( j = 1, 3, print(5 - F.nf.roots[j] ^ 2 > 0); print(1 - F.nf.roots[j] ^ 2 > 0); j += 1)
+for( j = 1, 4, print(5 - F.nf.roots[j] ^ 2 > 0); print(1 - F.nf.roots[j] ^ 2 > 0); j += 1)
+for( j = 1, 124314, print(5 - F.nf.roots[j] ^ 2 > 0); print(1 - F.nf.roots[j] ^ 2 > 0); j += 1)
+for( j = 0, 3, print(5 - F.nf.roots[j] ^ 2 > 0); print(1 - F.nf.roots[j] ^ 2 > 0); j += 1)
+for( j = 1, 4, print(5 - F.nf.roots[j] ^ 2 > 0); print(1 - F.nf.roots[j] ^ 2 > 0); j += 1)
+for( F.nf.roots, r, print(5 - r ^ 2 > 0); print(1 - r ^ 2 > 0))
+forach( F.nf.roots, r, print(5 - r ^ 2 > 0); print(1 - r ^ 2 > 0))
+foreach( F.nf.roots, r, print(5 - r ^ 2 > 0); print(1 - r ^ 2 > 0))
+w1 = F.nf.roots[1];
+w2 = F.nf.roots[2];
+w3 = F.nf.roots[3];
+w1 * w2 * w3
+w1 + w2 + w3
+foreach( [w1,w2,w3], r, print(5 - r ^ 2 > 0); print(1 - r ^ 2 > 0))
+foreach( [w1,w2,w3], r, (print(5 - r ^ 2 > 0); print(1 - r ^ 2 > 0)))
+foreach( [w1,w2,w3], r, [print(5 - r ^ 2 > 0); print(1 - r ^ 2 > 0)])
+foreach( [w1,w2,w3], r, [print(5 - r ^ 2 > 0); print(1 - r ^ 2 > 0)];)
+foreach( [w1,w2,w3], r, [print(5 - r ^ 2 > 0); print(1 - r ^ 2 > 0);])
+foreach( [w1,w2,w3], r, print(5 - r ^ 2 > 0); print(1 - r ^ 2 > 0);)
+foreach( [w1,w2,w3], r, print(5 - r ^ 2 > 0), print(1 - r ^ 2 > 0))
+w1
+w2
+5 - w1 ^ 2 > 0
+5 - w2 ^ 2 > 0
+1 - w2 ^ 2 > 0
+1 - w3 ^ 2 > 0
+5 - w3 ^ 2 > 0
+1 - w1 ^ 2 > 0
+[w1,w2,w3]
+F.pol
+quit
+nf(x^2-53)
+nfinit(x^2-53)
+nfinit(x^2-53).clgp
+bnfinit(x^2-53).clgp
+bnfinit(x^2-106).clgp
+bnfinit(x^2-57).clgp
+bnfinit(x^2-60).clgp
+bnfinit(x^2-60).narrow
+bnfnarrow(bnfinit(x^2-60))
+bnfnarrow(bnfinit(x^2-13))
+bnfnarrow(bnfinit(x^2-23))
+(bnfinit(x^2-23)).clgp
+(bnfinit(x^2-43)).clgp
+(bnfinit(x^2-40)).clgp
+narrow(bnfinit(x^2-40))
+bnfnarrow(bnfinit(x^2-40))
+bnfnarrow(bnfinit(x^2-8))
+bnfnarrow(bnfinit(x^2-19))
+(bnfinit(x^2-19)).clgp
+(bnfinit(x^2-21)).clgp
+(bnfinit(x^2-20)).clgp
+(bnfinit(x^2-25)).clgp
+(bnfinit(x^2-26)).clgp
+bnfnarrow(bnfinit(x^2-26))
+(bnfinit(x^2-15)).clgp
+bnfnarrow(bnfinit(x^2-15))
+(bnfinit(x^2-14)).clgp
+(bnfinit(x^2-12)).clgp
+(bnfinit(x^2-6)).clgp
+(bnfinit(x^2-8)).clgp
+(bnfinit(x^2-10)).clgp
+bnfnarrow(bnfinit(x^2-10))
+bnfnarrow(bnfinit(x^2-3))
+(bnfinit(x^2-3)).clgp
+(bnfinit(x^2-2)).clgp
+(bnfinit(x^2-7)).clgp
+(bnfinit(x^2-6)).clgp
+(bnfinit(x^2-8)).clgp
+(bnfinit(x^2-10)).clgp
+bnfnarrow(bnfinit(x^2-10))
+bnfnarrow(bnfinit(x^2-8))
+bnfnarrow(bnfinit(x^2-7))
+bnfnarrow(bnfinit(x^2-6))
+bnfnarrow(bnfinit(x^2-4))
+bnfnarrow(bnfinit(x^2-3))
+bnfnarrow(bnfinit(x^2-2))
+quit

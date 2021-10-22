@@ -1,0 +1,93 @@
+
+\documentclass{beamer}
+\mode<presentation>
+{
+  \usetheme{Singapore}
+
+  \setbeamercovered{transparent}
+}
+
+\usepackage[utf8]{inputenc}
+\usepackage{tikz-cd}
+\usetikzlibrary{matrix}
+\usetikzlibrary{decorations.pathmorphing}
+\usepackage{abreviaciones}
+
+\title{C\'{a}lculo de formas de Hilbert}
+\subtitle{Formas de Hilbert y d\'{o}nde encontrarlas}
+\author{Mejail, Daniel}
+\institute{
+	Departamento de Matem\'{a}tica\\
+	Facultad de Ciencias Exactas y Naturales\\
+	Universidad de Buenos Aires
+}
+\date{}
+\subject{Talks}
+
+% \pgfdeclareimage[height=0.5cm]{university-logo}{university-logo-filename}
+% \logo{\pgfuseimage{university-logo}}
+
+\AtBeginSubsection[]
+{
+  \begin{frame}<beamer>{Contenidos}
+    \tableofcontents[currentsection,currentsubsection]
+  \end{frame}
+}
+
+% \beamerdefaultoverlayspecification{<+->}
+
+\setbeamertemplate{itemize subitem}{$\circ$}
+
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+\resetcounteronoverlays{saveenumi}
+
+\begin{document}
+
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{Contenidos}
+  \tableofcontents
+  %% You might wish to add the option [pausesections]
+  % Vamos a empezar repasando la definici\'{o}n de una forma modular en una sola variable,
+  % espec\'{\i}ficamente, formas modulares para el grupo modular $\SL[2](\bb{Z})$, para
+  % pasar, luego, a la definici\'{o}n de formas de Hilbert (en un caso especial), haciendo una
+  % analog\'{\i}a con el caso el\'{\i}ptico.
+  %
+  % Una vez que hayamos mencionado las propiedades b\'{a}sicas de estos objetos,
+  % trataremos de entender qu\'{e} significa calcularlos, es decir, qu\'{e} informaci\'{o}n
+  % deseamos obtener acerca de ellos; no estaremos buscando una f\'{o}rmula expl\'{\i}cita
+  % para las funciones que los representan, como tampoco una representaci\'{o}n de todas
+  % las posibles formas. Las formas de Hilbert constituyen espacios vectoriales, as\'{\i} que el
+  % problema de calcular estos espacios es hallar bases para cada uno de ellos. La soluci\'{o}n
+  % de este problema requiere una reducci\'{o}n para saber con qu\'{e} nos podemos contentar.
+  %
+  % A continuaci\'{o}n, introducimos las formas modulares cuaterni\'{o}nicas y enunciamos la
+  % correspondencia de J-L, la relaci\'{o}n entre las formas cuaterni\'{o}nicas con las formas de
+  % Hilbert. La existencia de esta correspondencia da lugar a una familia de m\'{e}todos para
+  % calcular formas de Hilbert.
+  %
+  % Finalmente, terminamos con algunos ejemplos ilustrando esstos m\'{e}todos.
+  %
+\end{frame}
+
+\section{Formas de Hilbert}\label{sec:hilbert}
+\input{./secciones/hilbert.tex}
+
+\section{Formas modulares cuaterni\'{o}nicas}\label{sec:cuaternionicas}
+\input{./secciones/cuaternionicas.tex}
+
+\section{Ejemplos}\label{sec:ejemplos}
+\input{./secciones/ejemplos.tex}
+
+\section*{}
+\begin{frame}
+	\begin{center}
+		\Large{!`Muchas gracias!}
+	\end{center}
+\end{frame}
+
+\end{document}

@@ -1,0 +1,479 @@
+\theoremstyle{remark}
+\newtheorem{teoNorma}{Teorema}[section]
+\newtheorem{defAlgebraDeCuaterniones}[teoNorma]{Definici\'{o}n}
+\newtheorem{ejemMatrices}[teoNorma]{Ejemplos}
+\newtheorem{teoClasificacion}[teoNorma]{Teorema}
+\newtheorem{obsExtension}[teoNorma]{Observaci\'{o}n}
+\newtheorem{defRamifica}[teoNorma]{Definici\'{o}n}
+\newtheorem{defOrdenesEIdeales}[teoNorma]{Definiciones}
+\newtheorem{lemaDiscriminanteReducido}[teoNorma]{Lema}
+\newtheorem{obsDiscriminanteReducido}[teoNorma]{Observaci\'{o}n}
+\newtheorem{defOrdenDeEichler}[teoNorma]{Definici\'{o}n}
+\newtheorem{defCuaternionicas}[teoNorma]{Definici\'{o}n}
+\newtheorem{obsCuaternionicas}[teoNorma]{Observaciones}
+\newtheorem{teoCorrespondenciaJL}[teoNorma]{Teorema}
+\newtheorem{obsCorrespondenciaJL}[teoNorma]{Observaci\'{o}n}
+
+%-------------
+
+\subsection{\'{A}lgebras de cuaterniones}\label{subsec:preliminares}
+
+\begin{frame}{\'{A}lgebras de cuaterniones}
+	\begin{defAlgebraDeCuaterniones}\label{def:algebradecuaterniones}
+		Un \'{a}lgebra de cuaterniones sobre un cuerpo $F$
+		($\car(F)\not=2$) es una $F$-\'{a}lgebra $B$ con dos
+		generadores $i,j$ que verifican
+		\begin{align*}
+			i^2\,=\,a & \text{ ,}\quad j^2\,=\,b
+				\quad\text{y}\quad ji\,=\,-ij
+		\end{align*}
+		%
+		$a,b\in F^\times$, $k:=ij$, $B=\quatalg[F]{a,b}$. Si $h\in B$,
+		es ra\'{\i}z de
+		\begin{align*}
+			X^2\,-\,\trd(h)\,X\,+\,\nrd(h) & \,=\,
+				X^2\,-\,(h+\conj h)\,X\,+\,\conj hh
+			\text{ .}
+		\end{align*}
+		%
+	\end{defAlgebraDeCuaterniones}
+	\begin{ejemMatrices}\label{ejem:matrices}
+		\begin{itemize}
+			\item $\MM[2\times 2](\bb Q)$:
+				\begin{math}
+					i=\left[\begin{smallmatrix}
+						& 1 \\ 1 &
+					\end{smallmatrix}\right]
+				\end{math},
+				\begin{math}
+					j=\left[\begin{smallmatrix}
+						-1 & \\ & 1
+					\end{smallmatrix}\right]
+				\end{math}, $\nrd=\det$ y
+				$\trd=\traza$;
+			\item $\quatalg[\bb Q]{-1,-1}\subset\bb H$.
+		\end{itemize}
+	\end{ejemMatrices}
+\end{frame}
+
+\begin{frame}{\'{A}lgebras de cuaterniones (cont.)}
+	\begin{obsExtension}\label{obs:extension}
+		Dadas $B/F$ y una extensi\'{o}n $K/F$, $B\otimes_F K$ es un
+		\'{a}lgebra de cuaterniones sobre $K$. (%
+		\begin{math}
+			\quatalg[\bb Q]{-1,-1}\otimes_{\bb Q}\bb R\simeq\bb H
+		\end{math}).
+		%
+	\end{obsExtension}
+
+	\begin{defRamifica}\label{def:ramifica}
+		\begin{itemize}
+			\item\emph{$B$ ramifica en $v$}, si $B_v/\bb Q_v$ es de
+				divisi\'{o}n ($v=p,\infty$);
+			\item\emph{discriminante}:
+				\begin{math}
+					\disc[B]:=\prod_{p\in\Ram(B)}\,
+						\generado{p}
+				\end{math}. (%
+				\begin{math}
+					\disc[{\quatalg[\bb Q]{-1,-1}}]=2\bb Z
+				\end{math});
+			\item $B$ es \emph{indefinida}, si
+				$B_\infty\simeq\MM[2\times2](\bb R)$;
+			\item $B$ es \emph{definida}, si
+				$B_{\infty}\simeq\bb H$.
+		\end{itemize}
+	\end{defRamifica}
+
+	\begin{teoClasificacion}[Clasifici\'{o}n global]%
+		\label{thm:clasificacionglobal}
+		Sobre un cuerpo de n\'{u}meros,
+		\begin{math}
+			\big[B/F\big] \,\leftrightarrow\,
+				\text{subconjuntos pares de }\lugares{F}
+		\end{math}
+	\end{teoClasificacion}
+\end{frame}
+
+\begin{frame}{Ejemplos}
+	\begin{center}
+		\begin{tabular}{c|ccc}
+			$B$ & $\Ram(B)$ & $\disc[B]$ & $B_\infty$ \\
+			\hline
+			$\quatalg[\bb Q]{-1,-11}$ & $\{11,\infty\}$ &
+				$11\cdot\bb Z$ & $\bb H$ \\
+			$\quatalg[\bb Q(\sqrt 5)]{-1,-1}$ &
+				$\{\tau_1,\tau_2\}$ & $1$ &
+				$B_{\tau_1},B_{\tau_2}\simeq\bb H$ \\
+			$\quatalg[\bb Q(w)]{5- w^2,1-w^2}$ &
+				$\{\tau_1,\tau_3\}$ & $1$ &
+				$B_{\tau_2}\simeq\MM[2\times 2](\bb R)$
+		\end{tabular}
+	\end{center}
+	\begin{align*}
+		& w^3 - w^2 - 8\,w + 7 \,=\,0 \\
+		& \quad\tau_1 \,:\,w\,\mapsto\,-2,781\dots \text{ ,} \\
+		& \quad\tau_2 \,:\,w\,\mapsto\,0,8621\dots \text{ ,} \\
+		& \quad\tau_3 \,:\,w\,\mapsto\,2,919\dots
+	\end{align*}
+	%
+\end{frame}
+
+\begin{frame}{\'{O}rdenes e ideales}
+	\begin{defOrdenesEIdeales}\label{def:ordeneseideales}
+		\begin{itemize}
+			\item Un \emph{ret\'{\i}culo (completo)} en $B$ es un
+				$\bb Z$-m\'{o}dulo $I\subset B$ f.g. que
+				contiene una base ($\bb Q\cdot I=B$);
+			\item $x\in B$ es \emph{\'{\i}ntegro}, si
+				$\nrd(x),\trd(x)\in\bb Z$;
+			\item un \emph{orden} es un ret\'{\i}culo $\cal O$ que
+				es subanillo (con $1$);
+			\item
+				\begin{math}
+					\Oder(I):=\big\{h\in B\,:\,
+						I\,h\subset I\big\}
+				\end{math} es un orden;
+			\item un \emph{$\cal O$-ideal (a derecha)} es un
+				ret\'{\i}culo $I$ tal que $\Oder(I)=\cal O$.
+		\end{itemize}
+		%
+	\end{defOrdenesEIdeales}
+\end{frame}
+
+% \begin{frame}{\'{O}rdenes e ideales (cont.)}
+	% % Todo orden tiene asociado un ideal que mide, entre otras cosas,
+	% % cu\'{a}n lejos est\'{a} el orden de ser maximal.
+	% Dados $\beta_1,\,\beta_2,\,\beta_3,\,\beta_4\in B$,
+	% \begin{align*}
+		% \disc(\beta_1,\beta_2,\,\beta_3,\,\beta_4) & \,:=\,
+			% \det\,\trd(\beta_i\beta_j)
+		% \text{ .}
+	% \end{align*}
+	% %
+	% El \emph{discriminante (reducido)} de $\cal O$ es el ideal
+	% \begin{align*}
+		% \drd(\cal O) & \,:=\,\sqrt{\generado{\disc(%
+			% \beta_1,\,\beta_2,\,\beta_3,\,\beta_4)\,:\,%
+			% \beta_i\in \cal O}}
+		% \text{ .}
+	% \end{align*}
+	% %
+	% % Esto requiere algunas explicaciones: si $\{\beta_i\}_i$ es un
+	% % conjunto generador de $\cal O$ (pseudobase), entonces
+	% % $\disc(\alpha_i)=\det(M)^2\,\disc(\beta_i)$, $M$ la matriz de
+	% % coeficientes de los $\alpha_i$ en t\'{e}rminos de los $\beta_i$.
+	% % En general, $\det(M)\in\frak a$, para cierto ideal (?`\'{\i}ntegro?)
+	% % del cuerpo de base y el discriminante (no reducido) de $\cal O$
+	% % es $\frak a^2\,\disc(\beta_i)$ (o algo del estilo). Adem\'{a}s,
+	% % se puede ver (usando la relaci\'{o}n con el \'{\i}ndice y que existe
+	% % un orden con discriminante cuadrado) que el discriminante de
+	% % cualquier orden (ret\'{\i}culo) es un cuadrado. El discriminante
+	% % reucido es igual al ideal que se obtiene dividiendo los exponentes.
+	% %
+	% \begin{lemaDiscriminanteReducido}\label{lema:discriminantereducido}
+		% Si $\cal O\subset\cal O'$, entonces
+		% \begin{math}
+			% \drd(\cal O)\subset\drd(\cal O')
+		% \end{math}.
+		% En ese caso, $\cal O=\cal O'$, si y s\'{o}lo si
+		% $\drd(\cal O)=\drd(\cal O')$.
+	% \end{lemaDiscriminanteReducido}
+% \end{frame}
+
+\begin{frame}{\'{O}rdenes e ideales (cont.)}
+	\begin{lemaDiscriminanteReducido}\label{lema:discriminantereducido}
+		Todo orden $\cal O\subset B$ tiene asociado un ideal
+		$\drd(\cal O)\subset F$ de manera que, si
+		$\cal O\subset\cal O'$, entonces
+		\begin{math}
+			\drd(\cal O)\subset\drd(\cal O')
+		\end{math}.
+		En ese caso, $\cal O=\cal O'$, si y s\'{o}lo si
+		$\drd(\cal O)=\drd(\cal O')$.
+	\end{lemaDiscriminanteReducido}
+	\begin{obsDiscriminanteReducido}\label{obs:discriminantereducido}
+		Existen \'{o}rdenes maximales.
+	\end{obsDiscriminanteReducido}
+	\begin{defOrdenDeEichler}\label{def:ordendeeichler}
+		Un \emph{orden de Eichler} es la intersecci\'{o}n de dos
+		\'{o}rdenes maximales. Si $\cal O$ es de Eichler,
+		\begin{align*}
+			\drd(\cal O) & \,=\,\disc[B]\cdot\frak N
+			\text{ ,}
+		\end{align*}
+		%
+		$\frak N$ es el \emph{nivel} del orden y
+		$(\disc[B],\frak N)=1$.
+	\end{defOrdenDeEichler}
+\end{frame}
+
+\begin{frame}{Ejemplos}
+	\begin{itemize}
+		\item $B=\MM[2\times 2](F)$,
+			\begin{align*}
+				\cal O\,:=\,
+				\left[\begin{matrix}
+					\oka F & \oka F \\ \frak N & \oka F
+				\end{matrix}\right] \,\subset\,
+				\MM[2\times 2](\oka F)
+				& \qquad \text{(\phantom)}
+					\cal O_+^\times=\Gamma_0(\frak N)
+					\text{\phantom();}
+			\end{align*}
+			%
+		\item $B=\quatalg[\bb Q]{-1,-11}$, $\generado{1,i,j,k}$
+			no es maximal:
+			\begin{center}
+				\begin{tabular}{c|c}
+					$\cal O$ &
+						\begin{math}
+							\disc(\beta_1,\,
+								\beta_2,\,
+								\beta_3,\,
+								\beta_4)
+						\end{math} \\
+					\hline
+					$\generado{1,i,j,k}$ &
+						$4^2\,11^2$ \\
+					$\generado{1,i,j,\frac{1+i+j+k}{2}}$ &
+						$2^2\,11^2$ \\
+					$\generado{1,i,\frac{1+j}{2},%
+						\frac{i+k}{2}}$ & $11^2$ \\
+					$\generado{1,i,\frac{1+k}{2},%
+						\frac{i-j}{2}}$ & $11^2$
+				\end{tabular}
+			\end{center}
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Clases de ideales}
+	\begin{align*}
+		\ideales{\cal O} & \,:=\,\big\{I\subset B\,:\,
+			\Oder(I)=\cal O	\text{ , invertible}\big\}
+		\text{ .}
+	\end{align*}
+	%
+	Dados $I,J\in\ideales{\cal O}$, $I\sim J$, si existe $h\in B^\times$
+	tal que $I=h\,J$.
+	\begin{align*}
+		\Class{\cal O} & \,:=\,B^\times\backslash\ideales{\cal O}
+		\text{ .}
+	\end{align*}
+	%
+	En general, no es un grupo. $H(\cal O):=\#\Class{\cal O}<\infty$.
+	\begin{teoNorma}\label{thm:norma}
+		Si $\cal O$ es de Eichler,
+		\begin{math}
+			B_+^\times :=\big\{h\in B^\times\,:\,\nrd(h)\gg 0\big\}
+		\end{math},
+		\begin{align*}
+			\nrd & \,:\,B^\times_+\backslash\ideales{\cal O}
+				\,\twoheadrightarrow\,\pClass{F}
+			\text{ .}
+		\end{align*}
+		%
+		Si $B$ es indefinida, es una biyecci\'{o}n (aproximaci\'{o}n
+		fuerte). Si $B$ es definida,
+		$\nrd:\,\Class{\cal O}\twoheadrightarrow\pClass F$.
+	\end{teoNorma}
+\end{frame}
+
+\subsection{Formas cuaterni\'{o}nicas}\label{subsec:cuaternionicas}
+
+\begin{frame}{Formas cuaterni\'{o}nicas: $B$ indefinida}
+	Sean $B/F$ un \'{a}lgebra indefinida ($r=1$) y
+	$v_1,\,\dots,\,v_n\in\lugares[\infty]F$:
+	\begin{align*}
+		B_{v_1}\,\simeq\,\MM[2\times 2](\bb R) & \quad\text{y}\quad
+			B_{v_j}\,\simeq\,\bb H
+			\quad\text{(\phantom)}j>1\text{\phantom().}
+	\end{align*}
+	%
+	El grupo $B^\times_+=\big\{\nrd\gg 0\big\}$ act\'{u}a en $\hP$ v\'{\i}a
+	$\gamma\mapsto\gamma_\infty\in\GLtp[2](\bb R)$. Dadas
+	$f:\,\hP\rightarrow\bb C$,
+	\begin{math}
+		\gamma_\infty=
+			\left[\begin{smallmatrix}
+				a & b \\ c & d
+			\end{smallmatrix}\right]
+	\end{math},
+	\begin{align*}
+		f\operadormatrices{\null}{\gamma}(z) & \,=\,
+			\frac{\det(\gamma_\infty)}{(cz+d)^2}\,
+				f(\gamma_\infty\cdot z)
+		\text{ .}
+	\end{align*}
+	%
+\end{frame}
+
+\begin{frame}{Formas cuaterni\'{o}nicas: $B$ indefinida (cont.)}
+	Dado un orden de Eichler $\cal O\subset B$ de nivel $\frak N$,
+	$\Gamma:=\cal O_+^\times$. El cociente
+	\begin{align*}
+		X^B_0(\frak N) & \,:=\,\Gamma\backslash\hP
+	\end{align*}
+	%
+	es una curva compleja compacta (no hay c\'{u}spides) y conexa.
+
+	\begin{defCuaternionicas}\label{def:cuaternionicasindef}
+		$f:\,\hP\rightarrow\bb C$ es una \emph{forma cuaterni\'{o}%
+		nica de peso $\peso 2$ para $\cal O$}, si
+		\begin{enumerate}
+			\item $f$ es holomorfa en $\hP$;
+			\item para $\gamma\in\Gamma$,
+				$f\operadormatrices{}{\gamma}=f$.
+		\end{enumerate}
+		%
+		Denotamos este espacio por $\spitzH[B]2{\frak N}$.
+	\end{defCuaternionicas}
+\end{frame}
+
+\begin{frame}{Operadores de Hecke}
+	El espacio $\spitzH[B]2{\frak N}$ posee un producto interno y, para
+	cada primo $\frak p\nmid\disc[B]\cdot\frak N$, operadores
+	$T_{\frak p}:\,\spitzH[B]2{\frak N}\rightarrow\spitzH[B]2{\frak N}$
+	tales que
+	\begin{itemize}
+		\item $T_{\frak p}T_{\frak q}=T_{\frak q}T_{\frak p}$ y
+		\item
+			\begin{math}
+				\langle T_{\frak p}f,g\rangle=
+					\langle f,T_{\frak p}g\rangle
+			\end{math}.
+	\end{itemize}
+	%
+	Si $\frak p=\generado p$ con $p\gg 0$, entonces
+	\begin{align*}
+		T_{\frak p}f & \,:=\,\sum_{i\in \oka F/\frak p}\,
+			f\operadormatrices{}{\pi_i} \,+\,
+			f\operadormatrices{}{\pi_\infty}
+		\text{ ,}
+	\end{align*}
+	%
+	donde $\pi_i,\pi_\infty\in\cal O$, $\nrd(\pi_i)=\nrd(\pi_\infty)=p$ y
+	forman un sistema de representantes de
+	\begin{align*}
+		\Theta(\frak p) & \,:=\,\Gamma\backslash\Big\{
+			\pi\in\cal O_+\,:\,\generado{\nrd(\pi)}=\frak p\Big\}
+		\text{ .}
+	\end{align*}
+	%
+\end{frame}
+
+\begin{frame}{Formas cuaterni\'{o}nicas: $B$ definida}
+	Sea $B/F$ un \'{a}lgebra definida ($r=0$). $B_{v_i}\simeq\bb H$, si
+	$v_i\in\lugares[\infty]{F}$ y no hay acci\'{o}n en $\hP$.
+	Sea $\cal O\subset B$ un orden de Eichler de nivel $\frak N$.
+
+	\begin{defCuaternionicas}\label{def:cuaternionicasdef}
+		Una \emph{forma modular cuaterni\'{o}nica de peso $\peso 2$ %
+		para $\cal O$} es una funci\'{o}n
+		$f:\,\ideales{\cal O}\rightarrow\bb C$ tal que $f(b\,I)=f(I)$
+		para todo $b\in B^\times$. Denotamos este espacio
+		$\modularH[B]2{\frak N}$.
+	\end{defCuaternionicas}
+
+	\begin{obsCuaternionicas}\label{obs:cuaternionicasdef}
+		Sean $I\in\ideales{\cal O}$, $[I]$ la funci\'{o}n
+		carcter\'{\i}stica de la clase.
+		\begin{itemize}
+			\item $[I]\in\modularH[B]2{\frak N}$;
+			\item $\{[I_1],\,\dots,\,[I_H]\}$ es base de
+				$\modularH[B]2{\frak N}$.
+		\end{itemize}
+		%
+	\end{obsCuaternionicas}
+\end{frame}
+
+\begin{frame}{Operadores de Hecke}
+	Dados $\frak p\nmid\disc[B]\cdot\frak N$ e $I\in\ideales{\cal O}$,
+	\begin{align*}
+		\cal T_{\frak p}(I) & \,:=\,
+			\Big\{J\in\ideales{\cal O}\,:\,J\subset I,\,
+				\nrd(J)=\frak p\,\nrd(I)\Big\}
+			\text{ ,} \\
+		T_{\frak p}[I] & \,:=\,\sum_{J\in\cal T_{\frak p}(I)}\,
+			[J]
+		\text{ .}
+	\end{align*}
+	%
+	\begin{itemize}
+		\item El espacio $\modularH2{\frak N}$ admite un producto
+			interno respecto del cual los $T_{\frak p}$ son
+			autoadjuntos.
+		\item Existe $e_0\in\modularH2{\frak N}$, autofunci\'{o}n
+			simult\'{a}nea para los $T_{\frak p}$, con autovalor
+			$\idnorm\frak p+1$.
+		\item
+			\begin{math}
+				\spitzH[B]2{\frak N}:=
+					\Big\{f\in\modularH[B]2{\frak N}\,:\,
+					\langle f,e_0\rangle=0\Big\}
+			\end{math}.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{La correspondencia de Jacquet-Langlands}
+	\begin{teoCorrespondenciaJL}\label{thm:correspondenciajl}
+		Sea $B/F$ un \'{a}lgebra de cuaterniones de discriminante
+		$\disc[B]$ y sea $\frak N'\subset\oka F$ un ideal coprimo con
+		$\disc[B]$. Entonces existe un morfismo inyectivo de
+		m\'{o}dulos de Hecke
+		\begin{align*}
+			& \spitzH[B]2{\frak N'} \,\hookrightarrow\,
+				\spitzH2{\disc[B]\cdot\frak N'}
+		\end{align*}
+		%
+		cuya imagen consiste en las formas $f$ nuevas en los primos
+		$\frak p\mid\disc[B]$.
+	\end{teoCorrespondenciaJL}
+\end{frame}
+
+\begin{frame}{La correspondencia de Jacquet-Langlands (cont.)}
+	Sean $\frak N=\frak p\frak q$ ($\frak p\not =\frak q$), $B/F$ con
+	$\Ram(B)\cap\lugares[f]{F}=\{\frak p\}$. Por J-L,
+	\begin{align*}
+		\spitzH2{\frak p\frak q} & \,=\,
+			\spitzH2{\frak p\frak q}^{\frak p-\neue}\,\oplus\,
+			\spitzH2{\frak p\frak q}^{\frak p-\oude} \\
+		& \,=\,\spitzH[B]2{\frak q}\,\oplus\,
+			\Big(\iota_1\big(\spitzH2{\frak q}\big)\,+\,
+				\iota_{\frak p}\big(\spitzH2{\frak q}\big)
+				\Big)
+		\text{ .}
+	\end{align*}
+	%
+	Si $n=[F:\bb Q]=1\text{ o }2$, hay una \'{u}nica posibilidad.
+	Si $n>2$ hay muchas \'{a}lgebras (ramificaci\'{o}n en $\infty$).
+
+	Si, en cambio, $\frak N=\frak p^2$, no tenemos tantas opciones: debe
+	ser $\disc[B]=1$ y $\Ram(B)\subset\lugares[\infty]F$. Si $n=1$ es
+	imposible; si $n=2$, hay una \'{u}nica elecci\'{o}n.
+\end{frame}
+
+\begin{frame}{La correspondencia de Jacquet-Langlands (cont.)}
+	\begin{obsCorrespondenciaJL}\label{obs:correspondenciajl}
+		\begin{itemize}
+			\item Si $B/F$ es indefinida,
+				$f\in\spitzH[B]2{\frak N}$ tiene asociada una
+				$r$-forma diferencial holomorfa en la
+				\emph{variedad}
+				$\cal O^\times_+\backslash\hP^r$;
+			\item si $B$ es totalmente definida, $f$ es una
+				funci\'{o}n en un \emph{espacio finito}.
+		\end{itemize}
+		%
+	\end{obsCorrespondenciaJL}
+	Hacer la elecci\'{o}n m\'{a}s sencilla y eficiente posible,
+	$r=0\text{ o }1$:
+	\begin{itemize}
+		\item si $2\mid n=[F:\bb Q]$, tomar
+			$\Ram(B)=\lugares[\infty]F$;
+		\item si $2\nmid n$, tomar
+			$\Ram(B)=\lugares[\infty]F\setmin\{v_1\}$ ($n>2$).
+	\end{itemize}
+	%
+	En estos casos, $\spitzH2{\frak N}\simeq\spitzH[B]2{\frak N}$.
+\end{frame}

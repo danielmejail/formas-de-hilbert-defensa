@@ -1,0 +1,109 @@
+// LAS \'ALGEBRAS UTILIZADAS PARA CALCULAR S_2
+// SOBRE F=QQ(w)
+
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+primes7 := [ p[1] : p in Factorization(7 * OF)];
+// [Norm(p) : p in primes];
+// Factorization(7 * OF);
+
+S_n := NewSubspace(HilbertCuspForms(F, 1 * OF, k));
+Dimension(S_n);
+Algebra(QuaternionOrder(S_n));
+
+for p in primes7 do
+    S_n := NewSubspace(HilbertCuspForms(F, p, k));
+    Dimension(S_n);
+    Algebra(QuaternionOrder(S_n));
+end for;
+print("");
+for p in primes7 do
+    S_n := NewSubspace(HilbertCuspForms(F, p ^ 2, k));
+    Dimension(S_n);
+    Algebra(QuaternionOrder(S_n));
+end for;
+S7_n := NewSubspace(HilbertCuspForms(F, 7 * OF, k));
+Dimension(S7_n);
+Algebra(QuaternionOrder(S7_n));
+
+//***********
+
+// SOBRE F=QQ(w)
+
+_<x> := PolynomialRing(Rationals());
+F := NumberField(x ^ 2 - 5);
+OF := Integers(F);
+
+k := [2,2];
+
+primes11 := [ p[1] : p in Factorization(11 * OF)];
+// [Norm(p) : p in primes];
+// Factorization(11 * OF);
+
+S_n := NewSubspace(HilbertCuspForms(F, 1 * OF, k));
+Dimension(S_n);
+Algebra(QuaternionOrder(S_n));
+
+for p in primes11 do
+    S_n := NewSubspace(HilbertCuspForms(F, p, k));
+    Dimension(S_n);
+    Algebra(QuaternionOrder(S_n));
+end for;
+print("");
+for p in primes11 do
+    S_n := NewSubspace(HilbertCuspForms(F, p ^ 2, k));
+    Dimension(S_n);
+    Algebra(QuaternionOrder(S_n));
+end for;
+S11_n := NewSubspace(HilbertCuspForms(F, 11 * OF, k));
+Dimension(S11_n);
+Algebra(QuaternionOrder(S11_n));
+
+
+*****
+*****
+_<w> := PolynomialRing(Rationals());
+F := NumberField(w ^ 3 - w ^ 2 - 8 * w + 7);
+OF := Integers(F);
+
+k := [2,2,2];
+
+primes7 := [ p[1] : p in Factorization(7 * OF)];
+// [Norm(p) : p in primes];
+// Factorization(7 * OF);
+
+S_n := NewSubspace(HilbertCuspForms(F, 1 * OF, k));
+Dimension(S_n);
+B:=Algebra(QuaternionOrder(S_n));
+B;
+print("Ram:");
+RamifiedPlaces(B);
+print("Disc:");
+Discriminant(B);
+print("Standard form:");
+StandardForm(B);
+print("");
+
+for p in primes7 do
+    S_n := NewSubspace(HilbertCuspForms(F, p, k));
+    Dimension(S_n);
+    B := Algebra(QuaternionOrder(S_n));
+    B;
+    RamifiedPlaces(B);
+    Discriminant(B);
+    StandardForm(B);
+    print("");
+end for;
+// print("");
+// for p in primes7 do
+    // S_n := NewSubspace(HilbertCuspForms(F, p ^ 2, k));
+    // Dimension(S_n);
+    // Algebra(QuaternionOrder(S_n));
+// end for;
+// S7_n := NewSubspace(HilbertCuspForms(F, 7 * OF, k));
+// Dimension(S7_n);
+// Algebra(QuaternionOrder(S7_n));
